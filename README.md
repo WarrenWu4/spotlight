@@ -19,3 +19,10 @@ Each promised function works independently, showing that we were able to solve t
 We learned that more consistent and constant commits and pulls help find issues such as version differences earlier in the project, thus being able to address them in the foundations of the codebase. 
 ## What's next for Spotlight
 Given more time, we would be able to provide a full-featured experience for our customers. The next feature that we would have implemented given time was to use the Notion API integration with Google Calendar to create reminders on the calendar for events as they are recognized during the lecture. We also would have worked to identify what was being said at the times when the student was paying attention and have a separate Notion table for that content. This would allow the student to go back later and refresh, as well as find further reading if they don't understand. 
+
+
+
+Individual Demos
+https://youtu.be/iNw7TS4urF4
+https://youtu.be/TEokZp9jHLQ
+https://youtu.be/WIQoVmTmWu4
