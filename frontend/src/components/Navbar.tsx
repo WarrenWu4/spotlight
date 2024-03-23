@@ -8,9 +8,9 @@ export default function Navbar() {
                 Spotlight
             </Link>
             <div className="flex items-center gap-x-4">
-                <Link to={"/login"}>
+                {/* <Link to={"/login"}>
                     Log in
-                </Link>
+                </Link> */}
                 <Link to={"/demo"} className="px-3 py-2 text-white bg-black font-semibold rounded-md">
                     View Demo
                 </Link>

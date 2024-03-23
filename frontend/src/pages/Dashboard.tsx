@@ -16,13 +16,13 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="w-full h-full flex flex-col items-center max-w-screen-xl gap-y-12">
+        <div className="w-full h-full flex flex-col items-center max-w-screen-xl gap-y-12 px-4">
 
             <Navbar/>
             
-            <div className="w-full px-12 border-2 border-black">
+            <div className="w-fit p-8 rounded-md border-2 border-solid border-black">
                 
-                <button type="button" onClick={startSpotlight} className="px-4 py-2 bg-black rounded-md font-semibold text-xl flex items-center text-white gap-x-2 cursor-pointer">
+                <button type="button" onClick={startSpotlight} className="px-4 py-2 bg-black rounded-md font-semibold text-xl flex items-center text-white gap-x-2 cursor-pointer mb-4">
                     start spotlight
                     <FaLongArrowAltRight />
                 </button>
@@ -40,6 +40,7 @@ export default function Dashboard() {
             </div>
 
             {/* notion db */}
+
 
             {/* stats */}
 

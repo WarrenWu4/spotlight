@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+const url = "http://localhost:5000";
 
 export default function StudioVideo() {
     
     const nav = useNavigate();
     const [vidPerm, setVidPerm] = useState<boolean>(false);
-    const [vidStream, setVidStream] = useState<any>(null);
 
     async function getCameraPermission() {
         if ("MediaRecorder" in window) {
@@ -15,7 +16,6 @@ export default function StudioVideo() {
                     video: true,
                 });
                 setVidPerm(true);
-                setVidStream(streamData);
             } catch (err: any) {
                 nav("/error/error+getting+permission+for+camera");
             }
@@ -24,9 +24,44 @@ export default function StudioVideo() {
         }
     }
 
-    return (
-        <div>
+    async function startVideoRecording() {
+        // start recording video
+        await fetch(url + "/start")
+    }
 
+    async function stopVideoRecording() {
+        // stop recording video
+        await fetch(url + "/stop")
+    }
+
+    useEffect(() => {
+        getCameraPermission();
+    })
+
+    return (vidPerm) ? 
+    <div className="flex flex-col gap-y-1 w-full max-w-screen-md">
+
+        <div className="w-full flex items-center justify-between gap-x-4">
+            <div className="font-bold text-xl">
+                Video recording in progress
+            </div>
+            <div className="flex items-center gap-x-4">
+                <button type="button" onClick={startVideoRecording}>
+                    start
+                </button>
+                <button type="button" onClick={stopVideoRecording}>
+                    stop
+                </button>
+            </div>
         </div>
-    )
+
+        
+        <div className="w-full flex items-center justify-between gap-x-4">
+            <div className="w-full rounded-md h-1 bg-gray-400"/>
+            <div className="text-lg font-bold">00:00</div>
+        
+        </div>
+
+    </div>
+    : <></>
 }

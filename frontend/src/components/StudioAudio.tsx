@@ -68,7 +68,7 @@ export default function StudioAudio() {
 
         <div className="w-full flex items-center justify-between gap-x-4">
             <div className="font-bold text-xl">
-                Recording in progress
+                Audio recording in progress
             </div>
             <div className="flex items-center gap-x-4">
                 <button type="button" onClick={startAudioRecording}>
