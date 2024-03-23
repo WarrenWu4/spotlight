@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
+import { FaPause, FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const url = "http://localhost:5000";
 
-export default function StudioVideo() {
+interface StudioVideoProps {
+    setAnalytics: Function;
+}
+
+export default function StudioVideo({setAnalytics}: StudioVideoProps) {
     
     const nav = useNavigate();
     const [vidPerm, setVidPerm] = useState<boolean>(false);
+    const [vidStatus, setVidStatus] = useState<string>("inactive");
 
     async function getCameraPermission() {
         if ("MediaRecorder" in window) {
             try {
-                const streamData = await navigator.mediaDevices.getUserMedia({
+                await navigator.mediaDevices.getUserMedia({
                     audio: true,
                     video: true,
                 });
@@ -26,12 +32,15 @@ export default function StudioVideo() {
 
     async function startVideoRecording() {
         // start recording video
-        await fetch(url + "/start")
+        await fetch(url + "/start");
+        setVidStatus("recording");
     }
 
     async function stopVideoRecording() {
         // stop recording video
-        await fetch(url + "/stop")
+        const data = await fetch(url + "/stop")
+        setAnalytics(data);
+        setVidStatus("inactive");
     }
 
     useEffect(() => {
@@ -45,14 +54,16 @@ export default function StudioVideo() {
             <div className="font-bold text-xl">
                 Video recording in progress
             </div>
-            <div className="flex items-center gap-x-4">
-                <button type="button" onClick={startVideoRecording}>
-                    start
-                </button>
-                <button type="button" onClick={stopVideoRecording}>
-                    stop
-                </button>
-            </div>
+            <button type="button" onClick={(vidStatus === "inactive" ? startVideoRecording : stopVideoRecording)} className="flex items-center gap-x-2 text-lg font-bold cursor-pointer">
+                {(vidStatus === "inactive") ?
+                    <>
+                    <FaPlay size={12}/> <div>Start</div>
+                    </> :
+                    <>
+                    <FaPause size={12}/> <div>Pause</div>
+                    </>
+                }
+            </button>
         </div>
 
         

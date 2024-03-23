@@ -92,7 +92,7 @@ export default function StudioAudio() {
         </div>
 
         {audio ? 
-            <a download href={audio}>
+            <a href={audio} download="audio.wav">
                 download
             </a>
             :
