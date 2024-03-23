@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { FaPlay, FaPause } from "react-icons/fa";
+
 const audioMimeType = "audio/webm";
 
 export default function StudioAudio() {
@@ -70,14 +72,16 @@ export default function StudioAudio() {
             <div className="font-bold text-xl">
                 Audio recording in progress
             </div>
-            <div className="flex items-center gap-x-4">
-                <button type="button" onClick={startAudioRecording}>
-                    start
-                </button>
-                <button type="button" onClick={stopAudioRecording}>
-                    stop
-                </button>
-            </div>
+            <button type="button" onClick={(audioStatus === "inactive" ? startAudioRecording : stopAudioRecording)} className="flex items-center gap-x-2 text-lg font-bold cursor-pointer">
+                {(audioStatus === "inactive") ?
+                    <>
+                    <FaPlay size={12}/> <div>Start</div>
+                    </> :
+                    <>
+                    <FaPause size={12}/> <div>Pause</div>
+                    </>
+                }
+            </button>
         </div>
 
         
