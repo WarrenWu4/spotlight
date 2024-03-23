@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, jsonify
+import json
 import cv2
 import dlib
 import numpy as np
@@ -122,11 +123,22 @@ def start():
         video_processing = False
     return redirect(url_for('stop'))
 
+def generate_json_response(attention_score, total_phone_visible_time, session_time):
+    data = {
+        "Final Attention Score": f"{attention_score:.2f}%",
+        "Total Phone Usage": f"{total_phone_visible_time:.2f}s",
+        "Total Time": f"{session_time:.2f}s"
+    }
+    return data
+
 @app.route('/stop')
 def stop():
     global video_processing
     video_processing = False
-    return f"Final Attention Score: {attention_score:.2f}% <br> Total Phone Usage: {total_phone_visible_time:.2f}s <br> Total Time: {session_time:.2f}s <br><br><a href='/'>Back to Home</a>"
+    json_response = generate_json_response(attention_score, total_phone_visible_time, session_time)
+    print(attention_score, total_phone_visible_time, session_time)
+    print("JSON Response:", json.dumps(json_response, indent=4))   
+    return jsonify(json_response)
 
 if __name__ == "__main__":
     app.run(debug=True)
