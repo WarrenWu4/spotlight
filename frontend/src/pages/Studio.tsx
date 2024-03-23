@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { IoIosCheckmark } from "react-icons/io";
 import StudioAudio from "../components/StudioAudio";
-
+import { FaLongArrowAltRight } from "react-icons/fa"
+import StudioVideo from "../components/StudioVideo";
 
 export default function Studio() {
 
@@ -32,6 +32,12 @@ export default function Studio() {
 
                 {(lecture === "true") ? <StudioAudio/>:<></>
                 }
+                {(focus === "true") ? <StudioVideo/>:<></>}
+
+                <button type="button" className="px-4 py-2 bg-black rounded-md font-semibold text-xl flex items-center text-white gap-x-2 cursor-pointer">
+                    end spotlight session 
+                    <FaLongArrowAltRight />
+                </button>
 
             </div>
         

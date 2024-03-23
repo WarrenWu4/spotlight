@@ -2,7 +2,7 @@
 
 export default function NotionTable() {
     return (
-        <div>
+        <div className="w-full max-w-screen-xl ">
 
         </div>
     )
