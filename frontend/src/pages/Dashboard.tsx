@@ -27,15 +27,17 @@ export default function Dashboard() {
                     <FaLongArrowAltRight />
                 </button>
 
-                <div className="gap-x-2 flex items-center cursor-pointer">
-                    <input type="checkbox"/>
+                <button type="button" onClick={() => {setSpotlightOpt([!spotlightOpt[0], spotlightOpt[1]])}} className="gap-x-2 flex items-center cursor-pointer text-lg">
+                    <div className={`rounded-sm border-2 border-black border-solid  w-3 h-3 ${(spotlightOpt[0]) ? "bg-black" : "bg-white"}`}>
+                    </div>
                     transcribe lecture
-                </div>
+                </button>
 
-                <div className="gap-x-2 flex items-center cursor-pointer">
-                    <input type="checkbox"/>
+                <button type="button" onClick={() => {setSpotlightOpt([spotlightOpt[0], !spotlightOpt[1]])}} className="gap-x-2 flex items-center cursor-pointer text-lg">
+                    <div className={`rounded-sm border-2 border-black border-solid w-3 h-3 ${(spotlightOpt[1]) ? "bg-black" : "bg-white"}`}>
+                    </div>
                     measure focus
-                </div>
+                </button>
 
             </div>
 
